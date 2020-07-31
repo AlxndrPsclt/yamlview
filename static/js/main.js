@@ -58,9 +58,9 @@ var data={ "title":"Main title"};
 
 $( document ).ready(function() {
 
-  var app= Vue({
-    el: "#app"
-  });
+	//  var app= Vue({
+		//    el: "#app"
+		//  });
 	//$("#content").append(doc);
 	loadDoc("https://raw.githubusercontent.com/AlxndrPsclt/yamlview/master/notes/001.yaml", readYaml);
   console.log( "ready!" );
