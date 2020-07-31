@@ -10,7 +10,25 @@ function loadDoc(url, cFunction, cArgs) {
   xhttp.send();
 }
 
-loadDoc("https://api.github.com/repos/AlxndrPsclt/jasone/contents/articles/"+cat_name, getContentFromCategory, cat_name);
+function readYaml(xhttp) {
+  var text = xhttp.responseText;
+  console.log(text);
+  console.log(data);
+	var doc = jsyaml.load(text);
+// And then create our markup:
+	const markup = `
+ <div class="person">
+		<h2>
+				${doc.title}
+		</h2>
+		<p class="location">${doc.author}</p>
+		${doc.checklist}
+ </div>
+`;
+
+  $("#content").append(markup);
+}
+
 
 /*
 function getArticlesList(xhttp) {
@@ -39,10 +57,12 @@ function displayArticle(article){
 var data={ "title":"Main title"};
 
 $( document ).ready(function() {
-	var doc = jsyaml.load('title: hello\nname: world');
-  $("#content").append("<div>"+doc.greeting+"</div>");
-	//$("#content").append(doc);
 
+  var app= Vue({
+    el: "#app"
+  });
+	//$("#content").append(doc);
+	loadDoc("https://raw.githubusercontent.com/AlxndrPsclt/yamlview/master/notes/001.yaml", readYaml);
   console.log( "ready!" );
   /*loadDoc('articles/000.md', myFunction);*/
 });
